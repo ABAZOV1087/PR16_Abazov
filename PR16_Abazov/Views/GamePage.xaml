@@ -27,6 +27,18 @@
                         <Button x:Name="BtnAttack" Content="АТАКА" Width="120" Height="40" Margin="10" Background="DarkRed" Foreground="White" Click="BtnAttack_Click"/>
                         <Button x:Name="BtnGuard" Content="ЗАЩИТА" Width="120" Height="40" Margin="10" Background="DarkBlue" Foreground="White" Click="BtnGuard_Click"/>
                     </StackPanel>
+                    <ListBox x:Name="EnemyListBox" Height="150" Background="#252526" Foreground="White" 
+                         BorderBrush="#3F3F46" SelectionChanged="EnemyListBox_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding TypeName}" FontWeight="Bold" Width="100"/>
+                                    <TextBlock Text="HP: " Foreground="Red"/>
+                                    <TextBlock Text="{Binding BaseHP}" Foreground="Red"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                     <StackPanel x:Name="PanelChest" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Collapsed">
                         <Button Content="ВЗЯТЬ" Width="100" Height="40" Click="BtnTake_Click" Margin="5"/>
                         <Button Content="ВЫБРОСИТЬ" Width="100" Height="40" Click="BtnSkip_Click" Margin="5"/>

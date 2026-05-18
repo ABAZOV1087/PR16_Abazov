@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using PR16_Abazov.Models;
 
-namespace PR16_Abazov.Core
+namespace PR16_Abazov.Infrastructure
 {
     public static class GameLogger
     {
-        public static void Write(string message, System.Windows.Controls.ListBox logList)
+        public static void LogEvent(string message)
         {
-            logList.Items.Insert(0, $"[{System.DateTime.Now:HH:mm}] {message}");
+            Console.WriteLine(message);
         }
     }
 }
+

@@ -8,11 +8,14 @@ namespace PR16_Abazov.Models
 {
     public class EnemyTemplates
     {
-        public int EnemyID { get; set; }
         public string TypeName { get; set; }
         public double BaseHP { get; set; }
         public double BaseAttack { get; set; }
         public double BaseDefense { get; set; }
         public bool IsBoss { get; set; }
+
+
+        public double CritChance { get; set; }    
+        public double FreezeChance { get; set; }  
     }
 }

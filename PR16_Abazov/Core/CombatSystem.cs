@@ -1,38 +1,72 @@
-﻿using PR16_Abazov.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using PR16_Abazov.Models;
 
 namespace PR16_Abazov.Core
 {
     public static class CombatSystem
     {
-        public static string PlayerAttack(Players player, EnemyTemplates enemy)
-        {
-            double damage = 10;
-            if (player.CurrentWeapon != null) damage += player.CurrentWeapon.BonusDamage;
-
-            enemy.BaseHP -= damage;
-            if (enemy.BaseHP < 0) enemy.BaseHP = 0;
-            return $"Вы нанесли {damage} урона!";
-        }
-
         public static string EnemyAttack(EnemyTemplates enemy, Players player, bool isGuarding)
         {
+            Random rng = new Random();
+
+            // 1. Проверка на полное уклонение (только если выбрана Защита)
+            if (isGuarding && rng.NextDouble() < 0.40)
+            {
+                return $"{enemy.TypeName} атаковал, но вы полностью УКЛОНИЛИСЬ!";
+            }
+
             double damage = enemy.BaseAttack;
-            double defense = 0;
+            string effectMessage = "";
+            string type = enemy.TypeName.ToLower();
 
-            if (player.CurrentArmor != null)
-                defense = player.CurrentArmor.BonusDefense;
+            // Особенности врагов (Крит Гоблина)
+            if (type.Contains("гоблин") && rng.NextDouble() < 0.20)
+            {
+                damage *= 2;
+                effectMessage = " КРИТИЧЕСКИЙ УДАР!";
+            }
 
-            if (isGuarding) damage -= (defense * 2);
-            else damage -= defense;
+            // Расчет защиты
+            double defenseValue = player.CurrentArmor?.BonusDefense ?? 0;
 
-            if (damage < 0) damage = 0;
-            player.CurrentHP -= damage;
-            return $"{enemy.TypeName} нанес вам {damage} урона!";
+            if (type.Contains("скелет")) // Скелет игнорирует броню
+            {
+                defenseValue = 0;
+                effectMessage += " (Игнор брони!)";
+            }
+            else if (isGuarding) // Если уклонение не сработало, включается блок
+            {
+                // Уменьшение урона на 70-100% от стата защиты
+                double blockMultiplier = rng.Next(70, 101) / 100.0;
+                defenseValue *= blockMultiplier;
+                effectMessage += $" (Блок: -{Math.Round(defenseValue, 1)} урона)";
+            }
+
+            double finalDamage = damage - defenseValue;
+            if (finalDamage < 0) finalDamage = 0;
+            player.CurrentHP -= finalDamage;
+
+            if (type.Contains("маг") && rng.NextDouble() < 0.15)
+            {
+                effectMessage += " ВЫ ЗАМОРОЖЕНЫ!";
+            }
+
+            return $"{enemy.TypeName} нанес {Math.Round(finalDamage, 1)} урона.{effectMessage}";
+        }
+
+        public static string PlayerAttack(Players player, EnemyTemplates target)
+        {
+            double weaponBonus = player.CurrentWeapon != null
+                ? (player.CurrentWeapon.BonusAttack + player.CurrentWeapon.BonusDamage)
+                : 0;
+
+            double totalDamage = player.BaseAttack + weaponBonus;
+            double finalDamage = totalDamage - target.BaseDefense;
+
+            if (finalDamage < 1) finalDamage = 1;
+
+            target.BaseHP -= finalDamage;
+            return $"{player.Nickname} ударил {target.TypeName} на {Math.Round(finalDamage, 1)}";
         }
     }
-}
+} 
