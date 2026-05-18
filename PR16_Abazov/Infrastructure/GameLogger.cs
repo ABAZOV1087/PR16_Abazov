@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using PR16_Abazov.Models;
-
+ 
 namespace PR16_Abazov.Infrastructure
 {
     public static class GameLogger
