@@ -1,5 +1,5 @@
 ﻿namespace PR16_Abazov.Models
-{
+{ 
     public class Players
     {
         public string Nickname { get; set; }

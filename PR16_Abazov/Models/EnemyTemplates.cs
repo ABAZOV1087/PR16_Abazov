@@ -14,7 +14,7 @@ namespace PR16_Abazov.Models
         public double BaseDefense { get; set; }
         public bool IsBoss { get; set; }
 
-
+         
         public double CritChance { get; set; }    
         public double FreezeChance { get; set; }  
     }
