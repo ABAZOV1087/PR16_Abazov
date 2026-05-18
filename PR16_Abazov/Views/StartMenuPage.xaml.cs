@@ -21,10 +21,9 @@ namespace PR16_Abazov.Views
         {
             InitializeComponent();
         }
-
+         
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            // Переходим на основную страницу игры
             NavigationService.Navigate(new GamePage());
         }
     }

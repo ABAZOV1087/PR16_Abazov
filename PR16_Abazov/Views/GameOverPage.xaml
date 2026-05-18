@@ -1,7 +1,7 @@
 ﻿<Page x:Class="PR16_Abazov.Views.GameOverPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="GameOverPage">
+      Title="GameOverPage"> 
     <Grid Background="#440000">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="ВЫ ПОГИБЛИ" FontSize="72" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center"/>

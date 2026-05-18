@@ -1,7 +1,7 @@
 ﻿<Page x:Class="PR16_Abazov.Views.StartMenuPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="StartMenuPage">
+      Title="StartMenuPage"> 
     <Grid Background="#2D2D2D">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="ABAZOV ROGUELIKE" FontSize="48" Foreground="White" Margin="0,0,0,50" FontWeight="Bold"/>

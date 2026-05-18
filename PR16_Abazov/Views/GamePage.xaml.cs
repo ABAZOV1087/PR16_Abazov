@@ -65,7 +65,7 @@ namespace PR16_Abazov.Views
             }
             else
             {
-                pendingItem = engine.GenerateLoot();
+                pendingItem = engine.GenerateLoot(); 
                 TxtRoomTitle.Text = $"Сундук: {pendingItem.Name}";
                 PanelActions.Visibility = Visibility.Collapsed;
                 PanelChest.Visibility = Visibility.Visible;

@@ -17,7 +17,7 @@ namespace PR16_Abazov.Views
 {
     public partial class GameOverPage : Page
     {
-        public GameOverPage(int floor)
+        public GameOverPage(int floor) 
         {
             InitializeComponent();
             TxtFinalFloor.Text = $"Вы дошли до {floor} этажа";
