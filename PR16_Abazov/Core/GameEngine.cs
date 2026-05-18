@@ -26,7 +26,6 @@ namespace PR16_Abazov.Core
             return Core.Items[_rnd.Next(Core.Items.Count)];
         }
 
-        // Добавь это в GameEngine.cs
         public List<EnemyTemplates> GetEnemyTemplates()
         {
             return new List<EnemyTemplates>
@@ -37,7 +36,6 @@ namespace PR16_Abazov.Core
     };
         }
 
-        // Теперь этот метод будет работать
         public EnemyTemplates GenerateEnemy(int floor)
         {
             Random rng = new Random();

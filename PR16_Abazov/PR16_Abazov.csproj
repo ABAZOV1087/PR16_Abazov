@@ -59,12 +59,9 @@
     </ApplicationDefinition>
     <Compile Include="Infrastructure\GameLogger.cs" />
     <Compile Include="Models\EnemyTemplates.cs" />
-    <Compile Include="Models\EntityBase.cs" />
-    <Compile Include="Models\GameEvent.cs" />
     <Compile Include="Infrastructure\RandomGenerator.cs" />
     <Compile Include="Models\Items.cs" />
     <Compile Include="Models\Players.cs" />
-    <Compile Include="Resources.cs" />
     <Compile Include="Views\GameOverPage.xaml.cs">
       <DependentUpon>GameOverPage.xaml</DependentUpon>
     </Compile>

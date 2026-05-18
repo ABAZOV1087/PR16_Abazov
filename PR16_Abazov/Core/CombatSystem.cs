@@ -9,7 +9,6 @@ namespace PR16_Abazov.Core
         {
             Random rng = new Random();
 
-            // 1. Проверка на полное уклонение (только если выбрана Защита)
             if (isGuarding && rng.NextDouble() < 0.40)
             {
                 return $"{enemy.TypeName} атаковал, но вы полностью УКЛОНИЛИСЬ!";
@@ -19,24 +18,21 @@ namespace PR16_Abazov.Core
             string effectMessage = "";
             string type = enemy.TypeName.ToLower();
 
-            // Особенности врагов (Крит Гоблина)
             if (type.Contains("гоблин") && rng.NextDouble() < 0.20)
             {
                 damage *= 2;
                 effectMessage = " КРИТИЧЕСКИЙ УДАР!";
             }
 
-            // Расчет защиты
             double defenseValue = player.CurrentArmor?.BonusDefense ?? 0;
 
-            if (type.Contains("скелет")) // Скелет игнорирует броню
+            if (type.Contains("скелет")) 
             {
                 defenseValue = 0;
                 effectMessage += " (Игнор брони!)";
             }
-            else if (isGuarding) // Если уклонение не сработало, включается блок
+            else if (isGuarding) 
             {
-                // Уменьшение урона на 70-100% от стата защиты
                 double blockMultiplier = rng.Next(70, 101) / 100.0;
                 defenseValue *= blockMultiplier;
                 effectMessage += $" (Блок: -{Math.Round(defenseValue, 1)} урона)";
